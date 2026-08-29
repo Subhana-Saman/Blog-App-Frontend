@@ -96,7 +96,7 @@ export default function Navbar() {
           <NotificationBell />
           <button onClick={() => setOpen(!open)}
             className="p-2 rounded-xl border border-white/10 hover:bg-white/5 transition">
-            {open ? <X size={20} /> : <Menu size={20} />}
+       {open ? <X size={20} className="text-white" /> : <Menu size={20} className="text-white" />}
           </button>
         </div>
       </nav>

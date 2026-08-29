@@ -135,7 +135,7 @@ const updateComment = async (commentId) => {
   );
 
   return (
-    <div className="min-h-screen bg-[#020617] text-white pt-24 pb-20">
+    <div className="min-h-screen bg-[#020617] text-white pt-20 pb-20 overflow-x-hidden">
       <SEO
   title={blog.seoTitle || blog.title}
   description={blog.seoDescription || blog.content?.replace(/<[^>]+>/g, "").slice(0, 160)}
@@ -144,12 +144,12 @@ const updateComment = async (commentId) => {
   type="article"
 />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+       <div className="max-w-4xl mx-auto px-4 sm:px-6 w-full">
 
         {/* THUMBNAIL */}
         {blog.image && (
           <img src={blog.image} alt={blog.title}
-            className="w-full h-[400px] object-cover rounded-3xl mb-10 shadow-2xl" />
+            className="w-full h-[200px] sm:h-[300px] md:h-[400px] object-cover rounded-2xl mb-6 shadow-2xl" />
         )}
 
         {/* META */}
@@ -166,7 +166,7 @@ const updateComment = async (commentId) => {
         </div>
 
         {/* TITLE */}
-        <h1 className="text-4xl sm:text-5xl font-black leading-tight mb-6">{blog.title}</h1>
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-black leading-tight mb-4 sm:mb-6">{blog.title}</h1>
 
         {/* AUTHOR */}
         <div className="flex items-center gap-4 mb-10">
@@ -182,7 +182,7 @@ const updateComment = async (commentId) => {
         </div>
 
         {/* ACTIONS */}
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div className="flex flex-wrap gap-2 mb-6 sm:mb-12">
           <button onClick={likeBlog}
             className={`flex items-center gap-2 px-5 py-3 rounded-2xl font-semibold transition-all ${
               isLiked ? "bg-pink-500 text-white" : "bg-white/5 border border-white/10 hover:bg-pink-500/20"}`}>
@@ -246,16 +246,24 @@ const updateComment = async (commentId) => {
           <h2 className="text-3xl font-black mb-8">Comments ({comments.length})</h2>
 
           {/* ADD COMMENT */}
-          <div className="flex gap-3 mb-10">
-            <input type="text" value={text} onChange={(e) => setText(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addComment()}
-              placeholder="Write a comment..."
-              className="flex-1 p-4 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-cyan-400 transition-all" />
-            <button onClick={addComment} disabled={commentLoading}
-              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-teal-500 font-bold flex items-center gap-2 disabled:opacity-60">
-              <Send size={18} /> {commentLoading ? "..." : "Send"}
-            </button>
-          </div>
+         <div className="flex flex-col sm:flex-row gap-3 mb-10">
+  <input
+    type="text"
+    value={text}
+    onChange={(e) => setText(e.target.value)}
+    onKeyDown={(e) => e.key === "Enter" && addComment()}
+    placeholder="Write a comment..."
+    className="flex-1 p-4 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-cyan-400 transition-all w-full"
+  />
+  <button
+    onClick={addComment}
+    disabled={commentLoading}
+    className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-teal-500 font-bold flex items-center justify-center gap-2 disabled:opacity-60 flex-shrink-0"
+  >
+    <Send size={18} />
+    {commentLoading ? "..." : "Send"}
+  </button>
+</div>
 
           <div className="space-y-4">
             {comments.length === 0 && (

@@ -5,7 +5,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+ box-sizing: border-box;
 }
 
 html {
@@ -15,12 +15,17 @@ html {
 body {
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
+  min-height: 100vh;
   background: #020617;
   color: #fff;
 }
 
 body, #root {
   min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -38,4 +43,9 @@ button { cursor: pointer; }
 /* Smooth focus rings */
 input:focus, textarea:focus, select:focus {
   outline: none;
+}
+
+html, body, #root {
+  overflow-x: hidden;
+  max-width: 100%;
 }
